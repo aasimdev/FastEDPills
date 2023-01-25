@@ -33,7 +33,7 @@ const Faq = ({ title, data }) => {
             <div className={classNames(router.asPath === "/frequently-asked-questions" ? "mx-auto md:px-12 xl:px-0 xl:max-w-[890px]" : "mx-auto px-4 md:px-12 xl:px-0 xl:max-w-[890px]")}>
                 <h4 className='theme-heading text-center mb-8'>{title}</h4>
                 <div className="space-y-4">
-                    {data && data.map((item, index) => (
+                    {data?.map((item, index) => (
                         <Accordion open={open === index} icon={<Icon id={index} open={open} />} key={index} className={classNames(index === open ? "before:bg-blue before:h-full before:w-1 before:rounded-l-md before:absolute before:left-0" : "", "border border-[#e5e5e5] rounded-md shadow-box-sm")}>
                             <AccordionHeader onClick={() => handleOpen(index)} className="font-medium sm:font-semibold text-[13px] sm:text-lg text-heading border-b-0 py-5 px-4 text-left">
                                 {item.label}

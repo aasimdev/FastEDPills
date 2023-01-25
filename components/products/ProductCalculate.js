@@ -65,7 +65,7 @@ const ProductCalculate = (props) => {
                                             )
                                         }
                                     >
-                                        <RadioGroup.Label as="p" className="leading-tight">{medicationLabel2} <span className='text-xs'>({router.asPath === "/viagra" || router.asPath === "/sildenaf" ? "Sildenafil Citrate" : "Tadalafil" })</span>
+                                        <RadioGroup.Label as="p" className="leading-tight">{medicationLabel2} <span className='text-xs'>({router.asPath === "/viagra" || router.asPath === "/sildenaf" ? "Sildenafil Citrate" : "Tadalafil"})</span>
                                         </RadioGroup.Label>
                                     </RadioGroup.Option>
                                 </div>
@@ -131,7 +131,7 @@ const ProductCalculate = (props) => {
                                         value={selected}
                                         onChange={e => setSelected(e.target.value)}
                                     >
-                                        {tablets.map((items, index) => (
+                                        {tablets?.map((items, index) => (
                                             <option key={index}>{items}</option>
                                         ))}
                                     </select>

@@ -24,7 +24,7 @@ const Banner = ({ title, product, reviewsCount, bottle, goodList }) => {
                             </p>
                         </div>
                         <div className='flex flex-wrap flex-col gap-5 my-8 lg:hidden'>
-                            {goodList.map((item, index) => (
+                            {goodList?.map((item, index) => (
                                 <div className='flex gap-2.5 items-center' key={index}>
                                     <CheckCircleIcon className='w-6 h-6 text-blue' />
                                     <p className='text-heading text-base font-medium'>{item.label}</p>

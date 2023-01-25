@@ -10,6 +10,7 @@ import Testimonials from '../Testimonials'
 import ClinicalProven from '../ClinicalProven'
 import PracticalTreatment from '../PracticalTreatment'
 import Faq from '@/components/common/Faq'
+import GotQuestions from '../GotQuestions'
 
 const Tadalafil = () => {
 
@@ -73,7 +74,10 @@ const Tadalafil = () => {
 
             <GoodList data={goodList} />
 
-            <ProductCalculate title="Order Tadalafil 100% Online" />
+            <ProductCalculate title="Order Tadalafil 100% Online" medicationLabel1="Cialis"
+                medicationValue1="cialis"
+                medicationLabel2="Generic Cialis"
+                medicationValue2="generic-cialis" />
 
             <BestValue />
 
@@ -84,6 +88,8 @@ const Tadalafil = () => {
             <PracticalTreatment />
 
             <Faq title="TADALAFIL FAQ" data={FAQs}/>
+
+            <GotQuestions />
         </>
     )
 }

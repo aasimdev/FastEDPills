@@ -10,6 +10,7 @@ import Testimonials from '../Testimonials'
 import ClinicalProven from '../ClinicalProven'
 import PracticalTreatment from '../PracticalTreatment'
 import Faq from '@/components/common/Faq'
+import GotQuestions from '../GotQuestions'
 
 const Sildenafil = () => {
 
@@ -89,6 +90,8 @@ const Sildenafil = () => {
             <PracticalTreatment />
 
             <Faq title="SILDENAFIL FAQ" data={FAQs} />
+
+            <GotQuestions />
         </>
     )
 }
