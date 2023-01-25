@@ -12,7 +12,7 @@ const navigation = [
     { name: 'Treatments', href: '/', current: true, icon: false },
     { name: 'How it works', href: '/how-it-works', current: false, icon: false },
     { name: 'FAQ', href: '/frequently-asked-questions', current: false, icon: false },
-    { name: 'About us', href: '#', current: false, icon: false },
+    { name: 'About us', href: '/about-us', current: false, icon: false },
     { name: 'Contact us', href: '#', current: false, icon: false },
 ]
 
