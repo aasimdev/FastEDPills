@@ -4,7 +4,7 @@ import React from 'react'
 
 const Signup = () => {
     return (
-        <div className="bg-signup bg-center bg-no-repeat bg-cover">
+        <div className="bgm-signup bg-center bg-no-repeat bg-cover">
             <div className='px-4 sm:px-0 pt-14 pb-48 mx-auto max-w-[530px]'>
                 <h1 className='theme-heading text-center'>Sign up for a new account</h1>
                 <p className='text-center text-base sm:text-xl mt-5'>Please fill this form to create an account</p>
