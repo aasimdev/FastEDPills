@@ -7,7 +7,6 @@ const Breadcrumb = () => {
     const [breadcrumbs, setBreadcrumbs] = useState();
     useEffect(() => {
         const pathWithoutQuery = router.asPath.split("#")[0];
-        console.log(pathWithoutQuery);
         let pathArray = pathWithoutQuery.split("/");
         pathArray.shift();
 
@@ -24,6 +23,7 @@ const Breadcrumb = () => {
         setBreadcrumbs(breadcrumbs);
     }, [router.asPath]);
     
+    console.log(router);
     return (
         <div className='mx-auto px-12 xl:px-0 max-w-screen-xl py-3 lg:py-5 hidden md:block'>
             <nav className="flex" aria-label="Breadcrumb">

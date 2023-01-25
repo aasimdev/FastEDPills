@@ -5,7 +5,7 @@ import React from 'react'
 
 const Banner = ({ title, product, reviewsCount, bottle, goodList }) => {
     return (
-        <div className='bgm-banner bg-center bg-no-repeat bg-cover'>
+        <div className='bg-banner bg-center bg-no-repeat bg-cover'>
             <div className="mx-auto px-4 md:px-12 xl:px-0 xl:max-w-screen-xl">
                 <div className='grid grid-cols-12 gap-8 px-0 md:px-14 py-6 items-center'>
                     <div className='col-span-12 lg:col-span-8 text-center lg:text-left'>

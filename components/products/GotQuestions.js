@@ -4,7 +4,7 @@ import React from 'react'
 
 const GotQuestions = () => {
     return (
-        <div className='bgm-questionsbg bg-no-repeat bg-center bg-cover h-[349px]'>
+        <div className='bg-questionsbg bg-no-repeat bg-center bg-cover h-[349px]'>
             <div className="mx-auto px-4 md:px-12 xl:px-0 xl:max-w-screen-xl h-full">
                 <div className='flex flex-col items-center justify-center h-full'>
                     <h5 className='text-center theme-heading text-white'>Got Questions?</h5>

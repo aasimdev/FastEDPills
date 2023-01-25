@@ -162,6 +162,7 @@ const Header = () => {
                 router.asPath !== "/viagra" &&
                 router.asPath !== "/sildenafil" &&
                 router.asPath !== "/tadalafil" &&
+                router.asPath !== "/" &&
                 <Breadcrumb />
             }
 

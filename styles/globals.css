@@ -123,22 +123,11 @@
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 }
 
-.bgm-banner {
-  background-image: url(../public/images/banner-bg.jpg);
-}
-.bgm-questionsbg{
-  background-image: url(../public/images/gotquestions-bg.jpg);
-}
-.bgm-signup{
-  background-image: url(../public/images/signup-bg.jpg);
-}
-
 @media (max-width: 1024px) {
   .practicalTeatM {
     padding-left: 0;
     padding-right: 0;
   }
-
   .theme-heading {
     font-size: 32px;
     line-height: 1.2;
@@ -149,12 +138,10 @@
   .theme-heading {
     font-size: 24px;
   }
-
-  .theme-btn {
+  .theme-btn{
     min-width: 300px;
   }
-
-  .theme-btn.mfulwidth {
+  .theme-btn.mfulwidth{
     min-width: 100%;
   }
 }
