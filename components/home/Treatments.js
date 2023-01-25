@@ -51,6 +51,7 @@ const Treatments = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8 px-4 md:px-0'>
                 {treatmentCards.map((item, index) => {
                     return <TreatmentBox
+                        key={index}
                         title={item.title}
                         description={item.description}
                         bottle={item.bottle}
