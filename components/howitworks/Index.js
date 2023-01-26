@@ -94,7 +94,7 @@ const HowItWorks = () => {
                 </div>
             </div>
             <div className='text-center mb-24'>
-                <Link href="#" className='theme-btn mt-12'>Get Started <ChevronRightIcon /></Link>
+                <Link href="/register-an-account" className='theme-btn mt-12'>Get Started <ChevronRightIcon /></Link>
             </div>
         </>
     )

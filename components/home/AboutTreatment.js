@@ -20,7 +20,7 @@ const AboutTreatment = () => {
                     convenience of acquiring E.D. medication has improved exponentially, with
                     more affordable generic-branded medication now available. See how you
                     can begin to overcome E.D. through UltraPharmRx today. </p>
-                <Link href="#" className='theme-btn mt-6'>Get Started <ChevronRightIcon /></Link>
+                <Link href="/register-an-account" className='theme-btn mt-6'>Get Started <ChevronRightIcon /></Link>
             </div>
             <div className='text-center'>
                 <Image src="/images/man.png" className='mx-auto' alt="man" width="539" height="359" />

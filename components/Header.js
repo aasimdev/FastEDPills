@@ -8,12 +8,12 @@ import Breadcrumb from './Breadcrumb'
 import { useRouter } from 'next/router'
 
 const navigation = [
-    { name: <HomeIcon className='w-6 h-6 text-white' />, href: '#', current: false, icon: true },
-    { name: 'Treatments', href: '/', current: true, icon: false },
+    { name: <HomeIcon className='w-6 h-6 text-white' />, href: '/', current: false, icon: true },
+    { name: 'Treatments', href: '/viagra', current: true, icon: false },
     { name: 'How it works', href: '/how-it-works', current: false, icon: false },
     { name: 'FAQ', href: '/frequently-asked-questions', current: false, icon: false },
     { name: 'About us', href: '/about-us', current: false, icon: false },
-    { name: 'Contact us', href: '#', current: false, icon: false },
+    { name: 'Contact us', href: '/contact-us', current: false, icon: false },
 ]
 
 
@@ -107,7 +107,7 @@ const Header = () => {
                                                 key={item.name}
                                                 href={item.href}
                                                 className={classNames(
-                                                    router.asPath === item.href ? 'font-medium text-white bg-blue700' : 'text-white hover:bg-blue700 hover:text-white', item.icon ? 'hover:bg-transparent pl-0' : null,
+                                                    router.asPath === item.href ? 'font-medium text-white bg-blue700' : 'text-white hover:bg-blue700 hover:text-white', item.icon ? 'hover:bg-transparent pl-0 w-12 pr-0 justify-center' : null,
                                                     'py-[13px] px-[22px] inline-flex items-center text-base'
                                                 )}
                                                 aria-current={router.asPath === item.href ? 'page' : undefined}
