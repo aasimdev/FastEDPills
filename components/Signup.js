@@ -1,8 +1,23 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
 
 const Signup = () => {
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onBlur', reValidateMode: "onChange" });
+    const [passwordStrength, setPasswordStrength] = useState(null);
+    const [showError, setShowError] = useState(false);
+
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+
+    const handlePasswordChange = (e) => {
+        setPasswordStrength(strongPasswordRegex.test(e.target.value) ? 'strong' : 'weak');
+        setShowError(true)
+    };
+
+    const onSubmit = data => {
+        console.log(data);
+    };
     return (
         <div className="bg-[url('/images/signup-bg.jpg')] bg-center bg-no-repeat bg-cover">
             <div className='px-4 sm:px-0 pt-14 pb-48 mx-auto max-w-[530px]'>
@@ -12,20 +27,26 @@ const Signup = () => {
                     <div className='w-[90px] h-[90px] rounded-full flex items-center justify-center mb-11 sm:mb-12 mx-auto bg-gray300'>
                         <Image src="/images/add-user.png" alt="add user" width="47" height="52" />
                     </div>
-                    <form className="space-y-4 sm:space-y-5" action="#" method="POST">
+                    <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit(onSubmit)}>
                         <div>
                             <label htmlFor="email" className="block text-sm sm:text-lg font-medium text-heading">
                                 Email
                             </label>
                             <div className="mt-2 sm:mt-3">
                                 <input
-                                    id="email"
                                     name="email"
                                     type="email"
                                     placeholder='charlene@gmail.com'
-                                    required
+                                    {...register("email", {
+                                        required: 'Email is required',
+                                        pattern: {
+                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                            message: 'Invalid email address'
+                                        }
+                                    })}
                                     className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                 />
+                                {errors.email && <p className='text-orange text-xs mt-2'>{errors.email.message}</p>}
                             </div>
                         </div>
 
@@ -35,13 +56,15 @@ const Signup = () => {
                             </label>
                             <div className="mt-2 sm:mt-3">
                                 <input
-                                    id="password"
                                     name="password"
                                     type="password"
-                                    required
+                                    {...register("password", {
+                                        required: 'Password is required',
+                                    })}
                                     placeholder='•••••••••••••'
                                     className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                 />
+                                {errors.password && <p className='text-orange text-xs mt-2'>{errors.password.message}</p>}
                             </div>
                         </div>
 

@@ -163,6 +163,11 @@ const Header = () => {
                 router.asPath !== "/sildenafil" &&
                 router.asPath !== "/tadalafil" &&
                 router.asPath !== "/" &&
+                router.asPath !== "/checkout" &&
+                router.asPath !== "/contact-us" &&
+                router.asPath !== "/recommendations" &&
+                router.asPath !== "/cart" &&
+                router.asPath !== "/order-form" &&
                 <Breadcrumb />
             }
 

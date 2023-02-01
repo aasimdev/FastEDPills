@@ -40,7 +40,7 @@ const Footer = () => {
         <>
             <div className='bg-blue pt-7 pb-5'>
                 <div className="mx-auto px-4 md:px-12 xl:px-0 xl:max-w-screen-xl">
-                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7'>
                         <div>
                             <Accordion open={open === 1} icon={<Icon id={1} open={open} className="lg:hidden" />} key={1} className="p-0 sm:hidden">
                                 <AccordionHeader onClick={() => handleOpen(1)} className="font-medium sm:font-semibold text-[13px] sm:text-lg text-white pt-0 pb-3.5 px-0 text-left border-b border-white">
@@ -48,18 +48,18 @@ const Footer = () => {
                                 </AccordionHeader>
                                 <AccordionBody className="pt-3.5 px-0">
                                     <div>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
                                     </div>
                                 </AccordionBody>
                             </Accordion>
                             <div className='hidden sm:block'>
                                 <h6 className='font-medium sm:font-semibold text-[13px] sm:text-lg text-white pt-0 pb-3.5 px-0 text-left border-b border-white'>Popular Treatments</h6>
                                 <div className='pt-3.5'>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
                                 </div>
                             </div>
 
@@ -71,20 +71,20 @@ const Footer = () => {
                                 </AccordionHeader>
                                 <AccordionBody className="pt-3.5 px-0">
                                     <div>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
                                     </div>
                                 </AccordionBody>
                             </Accordion>
                             <div className='hidden sm:block'>
                                 <h6 className='font-medium sm:font-semibold text-[13px] sm:text-lg text-white pt-0 pb-3.5 px-0 text-left border-b border-white'> Useful Links</h6>
                                 <div className='pt-3.5'>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
                                 </div>
                             </div>
 
@@ -97,25 +97,25 @@ const Footer = () => {
                                 </AccordionHeader>
                                 <AccordionBody className="pt-3.5 px-0">
                                     <div>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                        <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                        <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
                                     </div>
                                 </AccordionBody>
                             </Accordion>
                             <div className='hidden sm:block'>
                                 <h6 className='font-medium sm:font-semibold text-[13px] sm:text-lg text-white pt-0 pb-3.5 px-0 text-left border-b border-white'>     Contact Us</h6>
                                 <div className='pt-3.5'>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
-                                    <Link href="#" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
+                                    <Link href="javascript:void(0)" className='text-white text-sm block leading-6'>Lorem Ipsum dolor</Link>
                                 </div>
                             </div>
 
                         </div>
-                        <div>
+                        {/* <div>
                             <Image src="/images/certified.png" className='sm:mx-auto md:ml-auto' alt="Certified" width="140" height="120" />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -124,10 +124,10 @@ const Footer = () => {
                     <div className='grid grid-cols-1 lg:grid-cols-2'>
                         <div className='row-start-2 lg:row-start-1'>
                             <div className='flex gap-[1px] flex-wrap md:flex-nowrap md:gap-3 justify-center lg:justify-start'>
-                                <Link href="#" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left md:after:w-[1px] md:after:h-4 md:after:bg-white md:after:absolute md:after:top-2/4 md:after:-translate-y-1/2 md:after:-right-1.5'>Terms and Conditions</Link>
-                                <Link href="#" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left md:after:w-[1px] md:after:h-4 md:after:bg-white md:after:absolute md:after:top-2/4 md:after:-translate-y-1/2 md:after:-right-1.5'>Privacy Policy</Link>
-                                <Link href="#" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left md:after:w-[1px] md:after:h-4 md:after:bg-white md:after:absolute md:after:top-2/4 md:after:-translate-y-1/2 md:after:-right-1.5'>Regulation</Link>
-                                <Link href="#" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left'>Contact Us</Link>
+                                <Link href="javascript:void(0)" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left md:after:w-[1px] md:after:h-4 md:after:bg-white md:after:absolute md:after:top-2/4 md:after:-translate-y-1/2 md:after:-right-1.5'>Terms and Conditions</Link>
+                                <Link href="javascript:void(0)" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left md:after:w-[1px] md:after:h-4 md:after:bg-white md:after:absolute md:after:top-2/4 md:after:-translate-y-1/2 md:after:-right-1.5'>Privacy Policy</Link>
+                                <Link href="javascript:void(0)" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left md:after:w-[1px] md:after:h-4 md:after:bg-white md:after:absolute md:after:top-2/4 md:after:-translate-y-1/2 md:after:-right-1.5'>Regulation</Link>
+                                <Link href="javascript:void(0)" className='text-white text-[13px] sm:text-sm relative bg-[#4d8694] md:bg-transparent text-center w-[calc(50%_-_1px)] md:w-[unset] py-3 px-1 md:p-0 md:text-left'>Contact Us</Link>
                             </div>
                             <div className='flex items-center sm:justify-center lg:justify-start gap-2 mt-7 md:my-2'>
                                 <Image src="/images/dmca.png" className='hidden lg:block' alt="dmca" width="121" height="24" />
