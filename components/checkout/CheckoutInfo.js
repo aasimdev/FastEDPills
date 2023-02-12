@@ -33,15 +33,15 @@ const CheckoutInfo = () => {
         setFormData(data);
         if (isValid) {
             setShipInfo(!shipInfo);
-            if(sameAddressFlag == '1'){
+            if (sameAddressFlag == '1') {
                 setShipInfoB(false);
                 setAdShipEdit(true);
                 setPaymentInfo(true);
-            }else{
+            } else {
                 setShipInfoB(true);
                 setAdShipEdit(false);
             }
-            
+
         }
     }
 
@@ -67,13 +67,13 @@ const CheckoutInfo = () => {
         console.log(zipCode);
         setZipcode(zipCode);
         axios
-            .get("https://ziptasticapi.com/"+ zipCode)
+            .get("https://ziptasticapi.com/" + zipCode)
             .then((responce) => {
                 console.log(responce);
-                if(responce.data.state){
+                if (responce.data.state) {
                     setState(responce.data.state);
                 }
-                if(responce.data.city){
+                if (responce.data.city) {
                     setCity(responce.data.city);
                 }
             })
@@ -84,22 +84,22 @@ const CheckoutInfo = () => {
         console.log(zipCodeAd);
         setZipcodeAd(zipCodeAd);
         axios
-            .get("https://ziptasticapi.com/"+ zipCodeAd)
+            .get("https://ziptasticapi.com/" + zipCodeAd)
             .then((responce) => {
                 console.log(responce);
-                if(responce.data.state){
+                if (responce.data.state) {
                     setStateAd(responce.data.state);
                 }
-                if(responce.data.city){
+                if (responce.data.city) {
                     setCityAd(responce.data.city);
                 }
             })
     }
 
     const setBilllingAddress = (e) => {
-        if(e.target.checked==true){
+        if (e.target.checked == true) {
             setSameAddressFlag(1);
-        }else{
+        } else {
             setSameAddressFlag('0');
         }
     }
@@ -120,16 +120,16 @@ const CheckoutInfo = () => {
             .post("http://localhost:9000/api/user/user_information", data)
             .then((responce) => {
                 console.log(responce.data);
-                if(responce.data.code == 200){
+                if (responce.data.code == 200) {
                     // localStorage.setItem("user_token", responce.data.data.token);
                     alert("Form has been submitted successfully")
                     router.push("/")
                 }
-                
+
             })
             .catch((error) => {
                 console.log(error);
-                
+
             });
         // alert("Form has been submitted successfully")
         // if (data) {
@@ -239,6 +239,24 @@ const CheckoutInfo = () => {
                                     {errors?.address && <p className='text-orange text-xs mt-2'>Address is required</p>}
                                 </div>
                             </div>
+                            <div>
+                                <label htmlFor="zipcode" className="block text-sm sm:text-lg font-medium text-[#525252]">
+                                    Zip Code
+                                </label>
+                                <div className="mt-2 sm:mt-3">
+                                    <input
+                                        id="zipcode"
+                                        name="zipcode"
+                                        onChange={(e) => getCityAndState(e)}
+                                        type="text"
+                                        defaultValue={zipcode}
+                                        // {...register('zipcode', { required: true })}
+                                        className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
+                                    />
+                                    {errors?.zipcode && <p className='text-orange text-xs mt-2'>Zip Code is required</p>}
+
+                                </div>
+                            </div>
                             <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                                 <div>
                                     <label htmlFor="state" className="block text-sm sm:text-lg font-medium text-[#525252]">
@@ -296,32 +314,15 @@ const CheckoutInfo = () => {
                                         {errors?.city && <p className='text-orange text-xs mt-2'>City is required</p>}
                                     </div>
                                 </div>
-                                <div>
-                                    <label htmlFor="zipcode" className="block text-sm sm:text-lg font-medium text-[#525252]">
-                                        Zip Code
-                                    </label>
-                                    <div className="mt-2 sm:mt-3">
-                                        <input
-                                            id="zipcode"
-                                            name="zipcode"
-                                            onChange={(e) => getCityAndState(e)}
-                                            type="text"
-                                            defaultValue={zipcode}
-                                            // {...register('zipcode', { required: true })}
-                                            className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
-                                        />
-                                        {errors?.zipcode && <p className='text-orange text-xs mt-2'>Zip Code is required</p>}
-                                        <div className="form-check mt-3">
 
-                                            <input type="checkbox" name="billingsame" id="billingsame" onChange={(e) => setBilllingAddress(e)} className='h-4 w-4 border border-[#a4a4a4] bg-[#f4f3f3] checked:bg-blue checked:border-blue  focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer' />
-                                            <label className="form-check-label inline-block text-[#525252] text-sm" htmlFor="billingsame">
-                                                Billing Same As Shipping
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+                            <div className="form-check mt-3">
 
+                                <input type="checkbox" name="billingsame" id="billingsame" onChange={(e) => setBilllingAddress(e)} className='h-4 w-4 border border-[#a4a4a4] bg-[#f4f3f3] checked:bg-blue checked:border-blue  focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer' />
+                                <label className="form-check-label inline-block text-[#525252] text-sm" htmlFor="billingsame">
+                                    Billing Same As Shipping
+                                </label>
+                            </div> 
 
                             <div className='text-center'>
                                 <button
@@ -449,7 +450,7 @@ const CheckoutInfo = () => {
                                             <option>Option B</option>
                                             <option>Option C</option>
                                         </select> */}
-                                          <input
+                                        <input
                                             id="aditionalstate"
                                             name="aditionalstate"
                                             value={aditionalstate}
@@ -476,7 +477,7 @@ const CheckoutInfo = () => {
                                             <option>Option B</option>
                                             <option>Option C</option>
                                         </select> */}
-                                          <input
+                                        <input
                                             id="aditionalcity"
                                             name="aditionalcity"
                                             value={aditionalcity}
