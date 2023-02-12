@@ -1,6 +1,7 @@
 import { PencilIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
-import React from 'react'
+import React,{useEffect, useState} from 'react'
+import Router from 'next/router'
 
 const Profile = () => {
     const statusList = [
@@ -32,18 +33,30 @@ const Profile = () => {
             label: "Auto Renewal Date:",
             value: "00-00-2022"
         },
+    
     ]
+    const [existing, setExisting] = useState([]);
+    useEffect(() => {
+        if(typeof window !== 'undefined'){
+            var existingData = localStorage.getItem("user_obj");
+            existingData = existingData ? JSON.parse(existingData) : {};
+        }else{
+            const {pathname} = Router;
+            Router.push('/')
+        }
+    }, []);
+
     return (
         <div className='bg-white py-11 mdpt-12 md:pb-52'>
             <div className="mx-auto px-4 md:px-12 xl:px-0 xl:max-w-screen-xl">
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-start'>
                     <div className='border border-gray pt-5 px-3 pb-5'>
                         <h3 className='text-text text-base font-semibold ml-1'>Personal Information</h3>
-                        <h1 className='text-blue text-3xl md:text-[40px] font-bold ml-1'>John Doe</h1>
+                        <h1 className='text-blue text-3xl md:text-[40px] font-bold ml-1'>{existing.first_name} {existing.last_name}</h1>
                         <ul className='mt-6'>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Email:</p>
-                                <span className='text-base text-left w-48'>emailadd@gmail.com</span>
+                                <span className='text-base text-left'>{existing.user_email}</span>
                             </li>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Phone Number:</p>

@@ -15,6 +15,8 @@ import NitratesList from './NitratesList';
 import RecreationalDrugs from './RecreationalDrugs';
 import MedicalIssues from './MedicalIssues';
 import { useRouter } from 'next/router';
+import axios from "axios";
+import Router from 'next/router';
 
 const Questionnaire = () => {
 
@@ -59,6 +61,29 @@ const Questionnaire = () => {
 
     const onSubmit = data => {
         console.log(data);
+        data['token'] = localStorage.getItem("user_token");
+        axios
+            .post("http://localhost:9000/api/user/user_answer", data)
+            .then((responce) => {
+                console.log(responce.data);
+                if(responce.data.code == 200){
+                    var user_data = JSON.parse(responce.data.data.answers);
+                   
+                    var existing = localStorage.getItem("user_obj");
+                    // var user = JSON.parse(localStorage.getItem('dummy_user'));
+                    existing = existing ? JSON.parse(existing) : {};
+                    existing["first_name"] = user_data.firstname;
+                    existing["last_name"] = user_data.lastname;
+                    localStorage.setItem("user_obj", JSON.stringify(existing));
+                    const {pathname} = Router;
+                    Router.push('/recommendations')
+                }
+                
+            })
+            .catch((error) => {
+                console.log(error);
+                
+            });
         // if (data && isValid) {
         //     router.push('recommendations');
         // }

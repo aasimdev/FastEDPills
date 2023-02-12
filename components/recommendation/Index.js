@@ -42,7 +42,7 @@ const Recommendation = () => {
                                     </li>
                                 </ul>
                                 <div className='mt-4 sm:mt-7 text-center sm:text-right'>
-                                    <Link href="javascript:void(0)" className='theme-btn blue-btn !min-w-[277px]'>Continue</Link>
+                                    <Link href="/checkout" className='theme-btn blue-btn !min-w-[277px]'>Continue</Link>
                                 </div>
                             </div>
                         </div>

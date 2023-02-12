@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import axios from "axios";
+import Router from 'next/router';
 
 const Signup = () => {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onBlur', reValidateMode: "onChange" });
@@ -17,6 +19,23 @@ const Signup = () => {
 
     const onSubmit = data => {
         console.log(data);
+        axios
+            .post("http://localhost:9000/api/user/signup", data)
+            .then((responce) => {
+                console.log(responce.data);
+                if(responce.data.code == 200){
+                    localStorage.setItem("user_token", responce.data.data.token);
+                    var user_obj = {user_email : responce.data.data.email};
+                    localStorage.setItem("user_obj", JSON.stringify(user_obj));
+                    const {pathname} = Router;
+                    Router.push('/order-form')
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                
+            });
+
     };
     return (
         <div className="bg-[url('/images/signup-bg.jpg')] bg-center bg-no-repeat bg-cover">
