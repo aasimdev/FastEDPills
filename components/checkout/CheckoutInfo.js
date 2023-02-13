@@ -174,6 +174,7 @@ const CheckoutInfo = () => {
         setShipInfoB(false);
         setShipInfo(false);
         setAdShipEdit(true);
+        setPaymentInfo(false);
     }
 
     // Additional Ship Information Edit
@@ -181,6 +182,7 @@ const CheckoutInfo = () => {
         setShipInfo(true);
         setShipInfoB(true);
         setAdShipEdit(false);
+        setPaymentInfo(false);
     }
 
   
@@ -664,11 +666,6 @@ const CheckoutInfo = () => {
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
                             <div className='text-center'>
                                 <button
                                     type="submit"
