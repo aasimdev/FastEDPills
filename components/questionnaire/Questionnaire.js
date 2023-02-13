@@ -63,7 +63,7 @@ const Questionnaire = () => {
         console.log(data);
         data['token'] = localStorage.getItem("user_token");
         axios
-            .post("http://localhost:9000/api/user/user_answer", data)
+            .post(process.env.BASE_URL + "/user/user_answer", data)
             .then((responce) => {
                 console.log(responce.data);
                 if(responce.data.code == 200){

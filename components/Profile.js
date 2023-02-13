@@ -1,7 +1,7 @@
 import { PencilIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
-import React,{useEffect, useState} from 'react'
-import Router from 'next/router'
+import React, { useEffect, useState } from 'react'
+import Router, { useRouter } from 'next/router'
 
 const Profile = () => {
     const statusList = [
@@ -33,18 +33,19 @@ const Profile = () => {
             label: "Auto Renewal Date:",
             value: "00-00-2022"
         },
-    
+
     ]
     const [existing, setExisting] = useState([]);
+    const router = useRouter();
     useEffect(() => {
-        if(typeof window !== 'undefined'){
+        if (typeof window !== 'undefined') {
             var existingData = localStorage.getItem("user_obj");
             existingData = existingData ? JSON.parse(existingData) : {};
-        }else{
-            const {pathname} = Router;
-            Router.push('/')
+            setExisting(existingData);
+        } else {
+            router.push('/')
         }
-    }, []);
+    }, [router]);
 
     return (
         <div className='bg-white py-11 mdpt-12 md:pb-52'>
@@ -56,7 +57,7 @@ const Profile = () => {
                         <ul className='mt-6'>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Email:</p>
-                                <span className='text-base text-left'>{existing.user_email}</span>
+                                <span className='text-base text-left w-48'>{existing.user_email}</span>
                             </li>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Phone Number:</p>

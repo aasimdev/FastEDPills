@@ -23,34 +23,28 @@ function classNames(...classes) {
 
 const Header = () => {
     const [userFlag, setUserFlag] = useState(false);
-    // if(typeof window !== 'undefined'){
-    //         //  var existing = localStorage.getItem("user_obj");
-    //         //  existing = existing ? JSON.parse(existing) : {};
-    //         //  setUserFlag(true);
-    //         //  setFlag(true);
-    //     }
-
-        const [existing, setExisting] = useState([]);
-        useEffect(() => {
-            if(typeof window !== 'undefined'){
-                var existingData = localStorage.getItem("user_obj");
-                existingData = existingData ? JSON.parse(existingData) : {};
-                setExisting(existingData);
-                var user_token = localStorage.getItem("user_token");
-                if(user_token){
-                    setUserFlag(true);
-                }
-               
-            }
-          }, []);
-
-          const logout = () => {
-            localStorage.removeItem("user_obj");
-            localStorage.removeItem("user_token");
-            setUserFlag(false);
-          }
-
     const router = useRouter();
+    const [existing, setExisting] = useState([]);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            var existingData = localStorage.getItem("user_obj");
+            existingData = existingData ? JSON.parse(existingData) : {};
+            setExisting(existingData);
+            var user_token = localStorage.getItem("user_token");
+            if (user_token) {
+                setUserFlag(true);
+            }
+
+        }
+    }, [router]);
+
+    const logout = () => {
+        localStorage.removeItem("user_obj");
+        localStorage.removeItem("user_token");
+        setUserFlag(false);
+        router.push('/')
+    }
+
 
     return (
         <>
@@ -147,14 +141,15 @@ const Header = () => {
                                         <UserIcon className='text-white w-7 h-7' />
                                         <span className='text-white text-base'>Account</span>
                                     </Link> */}
-                                    {userFlag == true ? (<a onClick={logout} className="flex items-center gap-x-2">
-                                            <UserIcon className='text-white w-7 h-7' />
-                                            <span className='text-white text-base'>Logout</span> {' '} <a href="/profile" className="flex items-center gap-x-2"><span className='text-white text-base'>{existing.user_email}</span></a>
-                                        </a>):
-                                        (<a href="/register-an-account" className="flex items-center gap-x-2">
+                                    {userFlag == true ? (<div className='flex items-center gap-2'><button onClick={logout} href="#" className="flex items-center gap-x-2">
+                                        <UserIcon className='text-white w-7 h-7' />
+                                        <span className='text-white text-base'>Logout</span></button> {' '}
+                                        <Link href="/profile" className="flex items-center gap-x-2"><span className='text-white text-base'>{existing.user_email}</span></Link>
+                                    </div>) :
+                                        (<Link href="/register-an-account" className="flex items-center gap-x-2">
                                             <UserIcon className='text-white w-7 h-7' />
                                             <span className='text-white text-base'>Account</span>
-                                        </a>)
+                                        </Link>)
                                     }
                                 </div>
                             </div>
@@ -178,18 +173,18 @@ const Header = () => {
                                 ))}
                             </div>
                             <div className="border-t border-bodybg pt-4 pb-3 px-4 md:px-12">
-                            {userFlag == true ?
-                                (<a href="#" className="flex items-center gap-x-2">
-                                    <UserIcon className='text-white w-7 h-7' />
-                                    <span className='text-white text-base'>Logout</span>
-                                </a>)
-                            :                       
-                                (<a href="/register-an-account" className="flex items-center gap-x-2">
-                                    <UserIcon className='text-white w-7 h-7' />
-                                    <span className='text-white text-base'>Account</span>
-                                </a>)
-                            }
-                            
+                                {userFlag == true ?
+                                    (<a href="#" className="flex items-center gap-x-2">
+                                        <UserIcon className='text-white w-7 h-7' />
+                                        <span className='text-white text-base'>Logout</span>
+                                    </a>)
+                                    :
+                                    (<a href="/register-an-account" className="flex items-center gap-x-2">
+                                        <UserIcon className='text-white w-7 h-7' />
+                                        <span className='text-white text-base'>Account</span>
+                                    </a>)
+                                }
+
                             </div>
                         </Disclosure.Panel>
                     </>

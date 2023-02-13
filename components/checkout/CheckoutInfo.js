@@ -117,12 +117,11 @@ const CheckoutInfo = () => {
 
         data['token'] = localStorage.getItem("user_token");
         axios
-            .post("http://localhost:9000/api/user/user_information", data)
+            .post(process.env.BASE_URL + "/user/user_information", data)
             .then((responce) => {
                 console.log(responce.data);
                 if (responce.data.code == 200) {
-                    // localStorage.setItem("user_token", responce.data.data.token);
-                    alert("Form has been submitted successfully")
+                    alert("Form has been submitted successfully");
                     router.push("/")
                 }
 
@@ -131,10 +130,6 @@ const CheckoutInfo = () => {
                 console.log(error);
 
             });
-        // alert("Form has been submitted successfully")
-        // if (data) {
-        //     router.push("/")
-        // }
     }
 
 
@@ -180,7 +175,6 @@ const CheckoutInfo = () => {
                                             id="firstname"
                                             name="firstname"
                                             type="text"
-
                                             {...register('firstname', { required: true })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
@@ -322,7 +316,7 @@ const CheckoutInfo = () => {
                                 <label className="form-check-label inline-block text-[#525252] text-sm" htmlFor="billingsame">
                                     Billing Same As Shipping
                                 </label>
-                            </div> 
+                            </div>
 
                             <div className='text-center'>
                                 <button
@@ -432,6 +426,23 @@ const CheckoutInfo = () => {
                                     {errors?.aditionaladdress && <p className='text-orange text-xs mt-2'>Address is required</p>}
                                 </div>
                             </div>
+                            <div>
+                                    <label htmlFor="aditionalzipcode" className="block text-sm sm:text-lg font-medium text-[#525252]">
+                                        Zip Code
+                                    </label>
+                                    <div className="mt-2 sm:mt-3">
+                                        <input
+                                            id="aditionalzipcode"
+                                            name="aditionalzipcode"
+                                            type="text"
+                                            onChange={(e) => getCityAndStateAditional(e)}
+                                            defaultValue={aditionalzipcode}
+                                            // {...register('aditionalzipcode', { required: true })}
+                                            className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
+                                        />
+                                        {errors?.aditionalzipcode && <p className='text-orange text-xs mt-2'>Zip Code is required</p>}
+                                    </div>
+                                </div>
                             <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                                 <div>
                                     <label htmlFor="aditionalstate" className="block text-sm sm:text-lg font-medium text-[#525252]">
@@ -487,30 +498,7 @@ const CheckoutInfo = () => {
                                         {errors?.aditionalcity && <p className='text-orange text-xs mt-2'>City is required</p>}
                                     </div>
                                 </div>
-                                <div>
-                                    <label htmlFor="aditionalzipcode" className="block text-sm sm:text-lg font-medium text-[#525252]">
-                                        Zip Code
-                                    </label>
-                                    <div className="mt-2 sm:mt-3">
-                                        <input
-                                            id="aditionalzipcode"
-                                            name="aditionalzipcode"
-                                            type="text"
-                                            onChange={(e) => getCityAndStateAditional(e)}
-                                            defaultValue={aditionalzipcode}
-                                            // {...register('aditionalzipcode', { required: true })}
-                                            className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
-                                        />
-                                        {errors?.aditionalzipcode && <p className='text-orange text-xs mt-2'>Zip Code is required</p>}
-                                        <div className="form-check mt-3">
-
-                                            {/* <input type="checkbox" name="billingsame" id="billingsame" className='h-4 w-4 border border-[#a4a4a4] bg-[#f4f3f3] checked:bg-blue checked:border-blue  focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer' />
-                                            <label className="form-check-label inline-block text-[#525252] text-sm" htmlFor="billingsame">
-                                                Billing Same As Shipping
-                                            </label> */}
-                                        </div>
-                                    </div>
-                                </div>
+                               
                             </div>
 
 

@@ -10,30 +10,35 @@ const Signup = () => {
     const [passwordStrength, setPasswordStrength] = useState(null);
     const [showError, setShowError] = useState(false);
 
-    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    // const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-    const handlePasswordChange = (e) => {
-        setPasswordStrength(strongPasswordRegex.test(e.target.value) ? 'strong' : 'weak');
-        setShowError(true)
-    };
+    // const handlePasswordChange = (e) => {
+    //     setPasswordStrength(strongPasswordRegex.test(e.target.value) ? 'strong' : 'weak');
+    //     setShowError(true)
+    // };
 
     const onSubmit = data => {
-        console.log(data);
         axios
-            .post("http://localhost:9000/api/user/signup", data)
+            .post(process.env.BASE_URL + "/user/signup", data)
             .then((responce) => {
                 console.log(responce.data);
-                if(responce.data.code == 200){
+                if (responce.data.code == 200) {
                     localStorage.setItem("user_token", responce.data.data.token);
-                    var user_obj = {user_email : responce.data.data.email};
+                    var user_obj = { user_email: responce.data.data.email };
                     localStorage.setItem("user_obj", JSON.stringify(user_obj));
-                    const {pathname} = Router;
+                    const { pathname } = Router;
                     Router.push('/order-form')
+                } else {
+                    if (responce.data.message == "Email already exists.") {
+                        setShowError(true)
+                    } else {
+                        setShowError(false)
+                    }
                 }
             })
             .catch((error) => {
                 console.log(error);
-                
+
             });
 
     };
@@ -66,6 +71,7 @@ const Signup = () => {
                                     className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                 />
                                 {errors.email && <p className='text-orange text-xs mt-2'>{errors.email.message}</p>}
+                                {showError && <p className='text-orange text-xs mt-2'>Email already exists.</p>}
                             </div>
                         </div>
 
