@@ -8,6 +8,7 @@ import axios from "axios";
 
 const CheckoutInfo = () => {
     const [formData, setFormData] = useState();
+    const [billingInfoData, setBillingInfoData] = useState();
     const [billingData, setBillingData] = useState();
     const [shipInfo, setShipInfo] = useState(false);
     const [shipInfoB, setShipInfoB] = useState(false);
@@ -23,8 +24,32 @@ const CheckoutInfo = () => {
     const [adShipEdit, setAdShipEdit] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onBlur', reValidateMode: "onChange" });
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+    const [cardType, setCardType] = useState("");
 
     const router = useRouter();
+
+    const validateCardNumber = (value) => {
+        let cardNumber = value.replace(/ /g, "");
+        if (cardNumber.startsWith("4")) {
+
+          setCardType("Visa");
+        } else if (cardNumber.startsWith("51") || cardNumber.startsWith("52") || cardNumber.startsWith("53") || cardNumber.startsWith("54") || cardNumber.startsWith("55")) {
+            setCardType("Mastercard");
+        } else {
+          setCardType("");
+        }
+
+        if ((cardNumber.length == 1) ) {
+            setCardType("0");
+        }
+    
+        if (!cardNumber || (cardNumber.length < 16) || (cardNumber.length > 16)) {
+          return false;
+        }
+        return true;
+      };
+
+
     const shippingInfoSubmit = (data) => {
         console.log(data);
         data['zipcode'] = zipcode;
@@ -59,7 +84,9 @@ const CheckoutInfo = () => {
             setShipInfoB(false);
             setPaymentInfo(true);
             setAdShipEdit(true);
-            setBillingData(data);
+            // setBillingData(data);
+            setFormData(data);
+            console.log(formData)
         }
     }
 
@@ -98,13 +125,22 @@ const CheckoutInfo = () => {
 
     const setBilllingAddress = (e) => {
         if (e.target.checked == true) {
+            console.log(formData)
             setSameAddressFlag(1);
             if (formData) {
-                setBillingData(formData)
+                // setBillingData(formData)
+                // data['aditionalfirstname'] = formData.firstname;
+                // data['aditionallastname'] = formData.lastname;
+                // data['aditionaladdress'] = formData.address;
+                // data['aditionalphone'] = formData.phone;
+                // data['aditionalzipcode'] = formData.zipcode;
+                // data['aditionalstate'] = formData.state;
+                // data['aditionalcity'] = formData.city;
+                // setFormData(data);
             }
         } else {
             setSameAddressFlag('0');
-            setBillingData(...billingData)
+            // setBillingData(...billingData)
         }
     }
 
@@ -334,7 +370,7 @@ const CheckoutInfo = () => {
                             <h6 className='text-heading font-medium text-base leading-none mb-7'>{formData.firstname} {formData.lastname}</h6>
                             <p className='text-[#525252] text-sm'>{formData.phone}</p>
                             <p className='text-[#525252] text-sm'>{formData.address}</p>
-                            <p className='text-[#525252] text-sm'>{formData.city}, {formData.state}, {formData.zipCode}</p>
+                            <p className='text-[#525252] text-sm'>{formData.city}, {formData.state}, {formData.zipcode}</p>
                         </div>
                     }
                 </div>
@@ -516,9 +552,15 @@ const CheckoutInfo = () => {
                 }
                 {adShipEdit &&
                     <div className='bg-[#f0f0f0] pt-6 px-4 md:px-7 pb-8'>
-                        <h6 className='text-heading font-medium text-base leading-none mb-7'>John Doe</h6>
+                        {/* <h6 className='text-heading font-medium text-base leading-none mb-7'>John Doe</h6>
                         <p className='text-[#525252] text-sm'>Address</p>
-                        <p className='text-[#525252] text-sm'>New York, NY, 10013</p>
+                        <p className='text-[#525252] text-sm'>New York, NY, 10013</p> */}
+                        <div>
+                            <h6 className='text-heading font-medium text-base leading-none mb-7'>{sameAddressFlag == '1' ? formData.firstname+' '+formData.lastname : formData.aditionalfirstname+' '+formData.aditionallastname }</h6>
+                            <p className='text-[#525252] text-sm'>{sameAddressFlag == '1' ? formData.phone : formData.aditionalphone }</p>
+                            <p className='text-[#525252] text-sm'>{sameAddressFlag == '1' ? formData.address : formData.aditionaladdress }</p>
+                            <p className='text-[#525252] text-sm'>{sameAddressFlag == '1' ? formData.city+', '+formData.state+', '+formData.zipcode : formData.aditionalcity+', '+formData.aditionalstate+', '+formData.aditionalzipcode}</p>
+                        </div>
                     </div>
                 }
             </div>
@@ -548,21 +590,13 @@ const CheckoutInfo = () => {
                                             maskChar=''
                                             {...register('cardnumber', {
                                                 required: 'Card number is required',
-                                                validate: value => {
-                                                    const cardNumber = value.replace(/\s/g, '');
-                                                    const visaRegEx = /^4[0-9]{12}(?:[0-9]{3})?$/;
-                                                    const mastercardRegEx = /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/;
-
-                                                    if (!visaRegEx.test(cardnumber) && !mastercardRegEx.test(cardnumber)) {
-                                                        return 'Invalid Visa or Mastercard number';
-                                                    }
-
-                                                    return true;
-                                                },
+                                                validate: (value) => validateCardNumber(value)
                                             })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
-                                        {errors.cardnumber && <p className='text-orange text-xs mt-2'>{errors.cardnumber?.message}</p>}
+                                        {cardType === ""   && <p className='text-orange text-xs mt-2'>Invalid Card Number</p>}
+                                        {cardType === "0" && <p className='text-orange text-xs mt-2'>Card number is required</p>}
+                                        {/* {errors.cardnumber && <p className='text-orange text-xs mt-2'>{errors.cardnumber?.message}</p>} */}
                                     </div>
                                 </div>
                                 <div>
