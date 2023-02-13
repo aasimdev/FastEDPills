@@ -17,7 +17,7 @@ const HowItWorks = () => {
             <div className="mx-auto md:px-12 xl:px-0 xl:max-w-screen-xl">
                 <div className='bg-white pt-12 px-8 pb-8 border border-gray'>
                     <h1 className='theme-heading text-center'>How it works</h1>
-                    <p className='text-base lg:text-xl uppercase text-center mt-4'>GET E.D. MEDICATION THE RIGHT WAY WITH GetEDPills</p>
+                    <p className='text-base lg:text-xl uppercase text-center mt-4'>GET E.D. MEDICATION THE RIGHT WAY WITH FastEDPills</p>
 
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-16 mt-10 md:mt-12 pt-1'>
                         <div className='relative'>
@@ -35,7 +35,7 @@ const HowItWorks = () => {
                                 title="SELECT PREFERRED TREATMENT"
                                 paragraph="Choose from our selection of E.D. 
                             treatments that fit your lifestyle and 
-                            budget. GetEDPills offers branded Viagra 
+                            budget. FastEDPills offers branded Viagra 
                             and Cialis, as well as affordable generic 
                             options to lower treatment costs."
                                 icon={preferredTreatmentIcon}
@@ -67,7 +67,7 @@ const HowItWorks = () => {
                 <div className='bg-white pt-14 px-8 pb-12 border border-gray'>
                     <div className='max-w-3xl mx-auto'>
                         <h2 className='text-center text-heading text-2xl md:text-[30px] font-bold'>Treating E.D. in the 21st Century </h2>
-                        <p className='text-center text-base lg:text-lg mt-4'>GetEDPills offers the right system to help you get the treatment you need,
+                        <p className='text-center text-base lg:text-lg mt-4'>FastEDPills offers the right system to help you get the treatment you need,
                             right from the comfort and privacy of your home
                         </p>
 

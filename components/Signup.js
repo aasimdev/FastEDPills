@@ -9,6 +9,7 @@ const Signup = () => {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onBlur', reValidateMode: "onChange" });
     const [passwordStrength, setPasswordStrength] = useState(null);
     const [showError, setShowError] = useState(false);
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     // const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
@@ -19,7 +20,7 @@ const Signup = () => {
 
     const onSubmit = data => {
         axios
-            .post(process.env.BASE_URL + "/user/signup", data)
+            .post(BASE_URL + "/user/signup", data)
             .then((responce) => {
                 console.log(responce.data);
                 if (responce.data.code == 200) {

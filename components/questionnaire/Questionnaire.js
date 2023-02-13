@@ -29,6 +29,7 @@ const Questionnaire = () => {
     }
     const prevStep = () => setStep(step - 1);
     const router = useRouter();
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     // function handleInputChange(e) {
     //     setFormData({
@@ -63,26 +64,26 @@ const Questionnaire = () => {
         console.log(data);
         data['token'] = localStorage.getItem("user_token");
         axios
-            .post(process.env.BASE_URL + "/user/user_answer", data)
+            .post(BASE_URL + "/user/user_answer", data)
             .then((responce) => {
                 console.log(responce.data);
-                if(responce.data.code == 200){
+                if (responce.data.code == 200) {
                     var user_data = JSON.parse(responce.data.data.answers);
-                   
+
                     var existing = localStorage.getItem("user_obj");
                     // var user = JSON.parse(localStorage.getItem('dummy_user'));
                     existing = existing ? JSON.parse(existing) : {};
                     existing["first_name"] = user_data.firstname;
                     existing["last_name"] = user_data.lastname;
                     localStorage.setItem("user_obj", JSON.stringify(existing));
-                    const {pathname} = Router;
+                    const { pathname } = Router;
                     Router.push('/recommendations')
                 }
-                
+
             })
             .catch((error) => {
                 console.log(error);
-                
+
             });
         // if (data && isValid) {
         //     router.push('recommendations');

@@ -70,9 +70,10 @@ const Header = () => {
 
                                     <div className="relative z-10 flex px-2 lg:px-0">
                                         <div className="flex flex-shrink-0 items-center">
-                                            <Link href="/">
-                                                <Image src="/images/logo.png" className='hidden lg:block' alt="logo" width="165" height="29" />
-                                                <Image src="/images/white-logo.png" className='lg:hidden' alt="logo" width="165" height="29" />
+                                            <Link href="/" className='text-white lg:text-[#070708] text-3xl font-bold'>
+                                                Fast<span className='text-[#070708] lg:text-blue'>ED</span>Pills
+                                                {/* <Image src="/images/logo.png" className='hidden lg:block' alt="logo" width="165" height="29" />
+                                                <Image src="/images/white-logo.png" className='lg:hidden' alt="logo" width="165" height="29" /> */}
                                             </Link>
                                         </div>
                                     </div>
@@ -207,6 +208,7 @@ const Header = () => {
                 router.asPath !== "/recommendations" &&
                 router.asPath !== "/cart" &&
                 router.asPath !== "/order-form" &&
+                router.asPath !== "/signin" &&
                 <Breadcrumb />
             }
 

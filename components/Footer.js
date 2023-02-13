@@ -131,7 +131,7 @@ const Footer = () => {
                             </div>
                             <div className='flex items-center sm:justify-center lg:justify-start gap-2 mt-7 md:my-2'>
                                 <Image src="/images/dmca.png" className='hidden lg:block' alt="dmca" width="121" height="24" />
-                                <p className='text-xs text-white text-left sm:text-center lg:text-left'>© GetEDPills Services Inc. 2022</p>
+                                <p className='text-xs text-white text-left sm:text-center lg:text-left'>© FastEDPills Services Inc. 2022</p>
                             </div>
                             <p className='text-xs text-white opacity-60 hidden lg:block'>1234 Lorem Ipsum Dolor ABC 23, Address Here, DE, 12345 | DUNS Number: 12-345-6789</p>
                         </div>

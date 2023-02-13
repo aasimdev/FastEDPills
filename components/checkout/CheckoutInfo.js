@@ -1,6 +1,6 @@
 import { LinkIcon, LockClosedIcon, PencilIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import InputMask from "react-input-mask";
 import axios from "axios";
@@ -8,6 +8,7 @@ import axios from "axios";
 
 const CheckoutInfo = () => {
     const [formData, setFormData] = useState();
+    const [billingData, setBillingData] = useState();
     const [shipInfo, setShipInfo] = useState(false);
     const [shipInfoB, setShipInfoB] = useState(false);
     const [paymentInfo, setPaymentInfo] = useState(false);
@@ -21,9 +22,9 @@ const CheckoutInfo = () => {
     const [sameAddressFlag, setSameAddressFlag] = useState('0');
     const [adShipEdit, setAdShipEdit] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'onBlur', reValidateMode: "onChange" });
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const router = useRouter();
-
     const shippingInfoSubmit = (data) => {
         console.log(data);
         data['zipcode'] = zipcode;
@@ -58,13 +59,12 @@ const CheckoutInfo = () => {
             setShipInfoB(false);
             setPaymentInfo(true);
             setAdShipEdit(true);
-            console.log(data);
+            setBillingData(data);
         }
     }
 
     const getCityAndState = (e) => {
         var zipCode = e.target.value;
-        console.log(zipCode);
         setZipcode(zipCode);
         axios
             .get("https://ziptasticapi.com/" + zipCode)
@@ -99,14 +99,15 @@ const CheckoutInfo = () => {
     const setBilllingAddress = (e) => {
         if (e.target.checked == true) {
             setSameAddressFlag(1);
+            if (formData) {
+                setBillingData(formData)
+            }
         } else {
             setSameAddressFlag('0');
         }
     }
 
     const paymentInfoSubmit = (data) => {
-
-        console.log(data);
         data['zipcode'] = zipcode;
         data['state'] = state;
         data['city'] = city;
@@ -117,18 +118,16 @@ const CheckoutInfo = () => {
 
         data['token'] = localStorage.getItem("user_token");
         axios
-            .post(process.env.BASE_URL + "/user/user_information", data)
+            .post(BASE_URL + "/user/user_information", data)
             .then((responce) => {
                 console.log(responce.data);
                 if (responce.data.code == 200) {
                     alert("Form has been submitted successfully");
                     router.push("/")
                 }
-
             })
             .catch((error) => {
                 console.log(error);
-
             });
     }
 
@@ -427,22 +426,22 @@ const CheckoutInfo = () => {
                                 </div>
                             </div>
                             <div>
-                                    <label htmlFor="aditionalzipcode" className="block text-sm sm:text-lg font-medium text-[#525252]">
-                                        Zip Code
-                                    </label>
-                                    <div className="mt-2 sm:mt-3">
-                                        <input
-                                            id="aditionalzipcode"
-                                            name="aditionalzipcode"
-                                            type="text"
-                                            onChange={(e) => getCityAndStateAditional(e)}
-                                            defaultValue={aditionalzipcode}
-                                            // {...register('aditionalzipcode', { required: true })}
-                                            className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
-                                        />
-                                        {errors?.aditionalzipcode && <p className='text-orange text-xs mt-2'>Zip Code is required</p>}
-                                    </div>
+                                <label htmlFor="aditionalzipcode" className="block text-sm sm:text-lg font-medium text-[#525252]">
+                                    Zip Code
+                                </label>
+                                <div className="mt-2 sm:mt-3">
+                                    <input
+                                        id="aditionalzipcode"
+                                        name="aditionalzipcode"
+                                        type="text"
+                                        onChange={(e) => getCityAndStateAditional(e)}
+                                        defaultValue={aditionalzipcode}
+                                        // {...register('aditionalzipcode', { required: true })}
+                                        className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
+                                    />
+                                    {errors?.aditionalzipcode && <p className='text-orange text-xs mt-2'>Zip Code is required</p>}
                                 </div>
+                            </div>
                             <div className='grid grid-cols-1 sm:grid-cols-2 gap-5'>
                                 <div>
                                     <label htmlFor="aditionalstate" className="block text-sm sm:text-lg font-medium text-[#525252]">
@@ -498,7 +497,7 @@ const CheckoutInfo = () => {
                                         {errors?.aditionalcity && <p className='text-orange text-xs mt-2'>City is required</p>}
                                     </div>
                                 </div>
-                               
+
                             </div>
 
 
@@ -515,13 +514,11 @@ const CheckoutInfo = () => {
                 }
                 {adShipEdit &&
                     <div className='bg-[#f0f0f0] pt-6 px-4 md:px-7 pb-8'>
-                        <h6 className='text-heading font-medium text-base leading-none mb-7'>John Doe</h6>
-                        <p className='text-[#525252] text-sm'>2636 My Drive</p>
+                        <h6 className='text-heading font-medium text-base leading-none mb-7'>{billingData.firstname} {billingData.lastname}</h6>
+                        <p className='text-[#525252] text-sm'>{billingData.address}</p>
                         <p className='text-[#525252] text-sm'>New York, NY, 10013</p>
                     </div>
                 }
-
-
             </div>
 
 
@@ -541,10 +538,12 @@ const CheckoutInfo = () => {
                                     </label>
                                     <div className="mt-2 sm:mt-3">
 
-                                        <input
+                                        <InputMask
                                             id="cardnumber"
                                             name="cardnumber"
-                                            type="number"
+                                            type="text"
+                                            mask="9999 9999 9999 9999"
+                                            maskChar=''
                                             {...register('cardnumber', { required: true })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
@@ -557,10 +556,12 @@ const CheckoutInfo = () => {
                                     </label>
                                     <div className="mt-2 sm:mt-3">
 
-                                        <input
+                                        <InputMask
                                             id="expiry"
                                             name="expiry"
-                                            type="number"
+                                            type="text"
+                                            mask="99/99"
+                                            maskChar=''
                                             {...register('expiry', { required: true })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
@@ -572,11 +573,12 @@ const CheckoutInfo = () => {
                                         CVC
                                     </label>
                                     <div className="mt-2 sm:mt-3">
-                                        <input
+                                        <InputMask
                                             id="cvc"
                                             name="cvc"
-                                            type="number"
-
+                                            type="text"
+                                            mask="999"
+                                            maskChar=''
                                             {...register('cvc', { required: true })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />

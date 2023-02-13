@@ -67,7 +67,7 @@ const Testimonials = () => {
                                     <StarIcon className="w-6 h-6 text-[#fed144]" />
                                 </div>
                                 <h5 className='text-base text-[#21293c] font-medium my-7'>Simple and fast</h5>
-                                <p className='text-[#21293c]'>GetEDPills is what’s missing in healthcare.
+                                <p className='text-[#21293c]'>FastEDPills is what’s missing in healthcare.
                                     Real, sensible service that doesn’t make
                                     you jump through hoops. Very affordable
                                     too. This is the way it should be.</p>
@@ -87,7 +87,7 @@ const Testimonials = () => {
                                     <StarIcon className="w-6 h-6 text-[#fed144]" />
                                 </div>
                                 <h5 className='text-base text-[#21293c] font-medium my-7'>Simple and fast</h5>
-                                <p className='text-[#21293c]'>GetEDPills is what’s missing in healthcare.
+                                <p className='text-[#21293c]'>FastEDPills is what’s missing in healthcare.
                                     Real, sensible service that doesn’t make
                                     you jump through hoops. Very affordable
                                     too. This is the way it should be.</p>
@@ -107,7 +107,7 @@ const Testimonials = () => {
                                     <StarIcon className="w-6 h-6 text-[#fed144]" />
                                 </div>
                                 <h5 className='text-base text-[#21293c] font-medium my-7'>Simple and fast</h5>
-                                <p className='text-[#21293c]'>GetEDPills is what’s missing in healthcare.
+                                <p className='text-[#21293c]'>FastEDPills is what’s missing in healthcare.
                                     Real, sensible service that doesn’t make
                                     you jump through hoops. Very affordable
                                     too. This is the way it should be.</p>
@@ -127,7 +127,7 @@ const Testimonials = () => {
                                     <StarIcon className="w-6 h-6 text-[#fed144]" />
                                 </div>
                                 <h5 className='text-base text-[#21293c] font-medium my-7'>Simple and fast</h5>
-                                <p className='text-[#21293c]'>GetEDPills is what’s missing in healthcare.
+                                <p className='text-[#21293c]'>FastEDPills is what’s missing in healthcare.
                                     Real, sensible service that doesn’t make
                                     you jump through hoops. Very affordable
                                     too. This is the way it should be.</p>
