@@ -104,6 +104,7 @@ const CheckoutInfo = () => {
             }
         } else {
             setSameAddressFlag('0');
+            setBillingData(...billingData)
         }
     }
 
@@ -146,6 +147,7 @@ const CheckoutInfo = () => {
         setAdShipEdit(false);
     }
 
+  
 
     return (
         <div className="space-y-6">
@@ -514,8 +516,8 @@ const CheckoutInfo = () => {
                 }
                 {adShipEdit &&
                     <div className='bg-[#f0f0f0] pt-6 px-4 md:px-7 pb-8'>
-                        <h6 className='text-heading font-medium text-base leading-none mb-7'>{billingData.firstname} {billingData.lastname}</h6>
-                        <p className='text-[#525252] text-sm'>{billingData.address}</p>
+                        <h6 className='text-heading font-medium text-base leading-none mb-7'>John Doe</h6>
+                        <p className='text-[#525252] text-sm'>Address</p>
                         <p className='text-[#525252] text-sm'>New York, NY, 10013</p>
                     </div>
                 }
@@ -544,10 +546,23 @@ const CheckoutInfo = () => {
                                             type="text"
                                             mask="9999 9999 9999 9999"
                                             maskChar=''
-                                            {...register('cardnumber', { required: true })}
+                                            {...register('cardnumber', {
+                                                required: 'Card number is required',
+                                                validate: value => {
+                                                    const cardNumber = value.replace(/\s/g, '');
+                                                    const visaRegEx = /^4[0-9]{12}(?:[0-9]{3})?$/;
+                                                    const mastercardRegEx = /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/;
+
+                                                    if (!visaRegEx.test(cardnumber) && !mastercardRegEx.test(cardnumber)) {
+                                                        return 'Invalid Visa or Mastercard number';
+                                                    }
+
+                                                    return true;
+                                                },
+                                            })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
-                                        {errors?.cardnumber && <p className='text-orange text-xs mt-2'>Card Number is required</p>}
+                                        {errors.cardnumber && <p className='text-orange text-xs mt-2'>{errors.cardnumber?.message}</p>}
                                     </div>
                                 </div>
                                 <div>
@@ -562,10 +577,33 @@ const CheckoutInfo = () => {
                                             type="text"
                                             mask="99/99"
                                             maskChar=''
-                                            {...register('expiry', { required: true })}
+                                            {...register('expiry', {
+                                                required: true,
+                                                pattern: /^(0[1-9]|1[0-2])\/(\d{2})$/,
+                                                validate: (value) => {
+                                                    const [month, year] = value.split("/");
+                                                    const currentDate = new Date();
+                                                    const currentMonth = currentDate.getMonth() + 1;
+                                                    const currentYear = currentDate.getFullYear().toString().slice(2);
+
+                                                    if (year < currentYear) {
+                                                        return false;
+                                                    } else if (year === currentYear && month < currentMonth) {
+                                                        return false;
+                                                    }
+
+                                                    return true;
+                                                },
+                                            })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
-                                        {errors?.expiry && <p className='text-orange text-xs mt-2'>Date is required</p>}
+                                        {errors.expiry?.type === "required" && <p className='text-orange text-xs mt-2'>Date is required</p>}
+                                        {errors.expiry?.type === "pattern" && (
+                                            <p className='text-orange text-xs mt-2'>Invalid expiry date format</p>
+                                        )}
+                                        {errors.expiry?.type === "validate" && (
+                                            <p className='text-orange text-xs mt-2'>Expiry date must be in the future</p>
+                                        )}
                                     </div>
                                 </div>
                                 <div>
@@ -579,10 +617,16 @@ const CheckoutInfo = () => {
                                             type="text"
                                             mask="999"
                                             maskChar=''
-                                            {...register('cvc', { required: true })}
+                                            {...register('cvc', {
+                                                required: true,
+                                                pattern: /^\d{3,4}$/
+                                            })}
                                             className="block w-full appearance-none rounded-md border border-gray400 px-3 py-3 sm:py-[15px] bg-[#fbfbfb] placeholder-placehoder focus:border-blue focus:outline-none focus:ring-blue text-xs sm:text-base"
                                         />
-                                        {errors?.cvc && <p className='text-orange text-xs mt-2'>CVC number is required</p>}
+                                        {errors.cvc?.type === "required" && <p className='text-orange text-xs mt-2'>CVC number is required</p>}
+                                        {errors.cvc?.type === "pattern" && (
+                                            <p className='text-orange text-xs mt-2'>Invalid expiry date format</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
