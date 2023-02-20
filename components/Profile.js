@@ -53,24 +53,24 @@ const Profile = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-start'>
                     <div className='border border-gray pt-5 px-3 pb-5'>
                         <h3 className='text-text text-base font-semibold ml-1'>Personal Information</h3>
-                        <h1 className='text-blue text-3xl md:text-[40px] font-bold ml-1'>{existing.first_name} {existing.last_name}</h1>
+                        <h1 className='text-blue text-3xl md:text-[40px] font-bold ml-1 mt-4'>{existing.first_name} {existing.last_name}</h1>
                         <ul className='mt-6'>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Email:</p>
-                                <span className='text-base text-left w-48'>{existing.user_email}</span>
+                                <span className='text-base text-left w-52'>{existing.user_email}</span>
                             </li>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Phone Number:</p>
-                                <span className='text-base text-left w-48'>(123)456-7890</span>
+                                <span className='text-base text-left w-52'>(123)456-7890</span>
                             </li>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>DOB:</p>
 
-                                <span className='text-base text-left w-48'>02 34 5678</span>
+                                <span className='text-base text-left w-52'>02 34 5678</span>
                             </li>
                             <li className='flex justify-between items-center border-b border-gray500 pb-2 pt-2 px-3 last-of-type:border-0'>
                                 <p className='font-medium text-base text-text'>Password:</p>
-                                <span className='text-base text-left w-48'>*********</span>
+                                <span className='text-base text-left w-52'>*********</span>
                             </li>
 
                         </ul>

@@ -65,7 +65,7 @@ const ContactUs = () => {
                         </div>
                         <div className='mb-6'>
                             <h5 className='text-sm font-semibold text-blue'>Email us anytime:</h5>
-                            <Link href='mailto:' className='text-sm text-text'>support@email.com</Link>
+                            <Link href='mailto:info@fastedpills.com' className='text-sm text-text'>info@fastedpills.com</Link>
                         </div>
                         <div>
                             <h5 className='text-sm font-semibold text-blue'>More questions or concerns:</h5>
